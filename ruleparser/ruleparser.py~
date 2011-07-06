@@ -1,0 +1,43 @@
+# Coding: utf8
+
+"""
+  RuleParser: Tagging Rules Engine
+  The engine has the following parts:
+    - Rule Sintax
+    - Parser
+    - Engine
+"""
+
+from nltk import Tree
+
+class RuleParser():
+    """ 
+    This class implements the Rule Engine.
+    """
+    def __init__(self, grammar_str):
+        """ 
+        Instantiates a RuleParser Object from a grammar string.
+        """
+
+        #parse grammar
+        rules = self.parse_grammar(grammar_str)
+        
+    
+    def parse_grammar(self, grammar_str):
+        """
+        method that parse a grammar string to obtain an array of consecutive rules
+        """
+        Lines = grammar.split('\n')
+        For line in lines:
+            if line:
+                line.strip()
+                
+                
+            
+
+    def parse(self, input_tree):
+        """
+        Parse an input tree using the Parser grammars.
+        """
+
+    
