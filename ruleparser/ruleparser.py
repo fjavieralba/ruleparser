@@ -4,8 +4,8 @@
   RuleParser: Tagging Rules Engine
   The engine has the following parts:
     - Rule Sintax: specified on the documentation
-    - Parser: implemented in RuleParser.parse_grammar()
-    - Engine: implemented in RuleParser.tag()
+    - Rule Parser: implemented in RuleParser.parse_grammar()
+    - Tagging Engine: implemented in RuleParser.tag()
 
   IMPORTANT: All input text is a text tree (NLTK style) with a
              modification: each token can have one or more tags.
@@ -69,7 +69,7 @@ class RuleParser():
             rule_name = rule.keys()[0]
             rule = rule.values()[0]
 
-            matches = re.finditer(rule, text)
+            matches = re.finditer(rule, text, re.I)
             for match in matches:
                 match_text = match.group(rule_name)
                 #eliminar espacios al principio y al final del matching text,

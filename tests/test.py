@@ -105,5 +105,17 @@ class TestAdvanced(unittest.TestCase):
          result = rp.tag(self.text)
          self.assertEqual(result,expected)
 
+    def test_repetitive_rules(self):
+         self.text = [('He',['VB']), ('estudiado',['VB']), ('en',['ADV']), ('la',['DT']), ('Universidad',['NN']), ('Complutense',['NN']), ('y',['CONJ']), ('he',['VB']), ('trabajado',['VB']), ('en',['ADV']), ('Yahoo!',['NN']), ('durante',['ADV']), ('2',['NN']), ('años',['NN'])]
+         grammar = """
+                      UNIVERSIDAD : {"universidad"}
+                      UNIVERSIDAD : {"complutense"}
+                      UNIVERSIDAD : {<UNIVERSIDAD> <UNIVERSIDAD>}
+                   """
+         rp = ruleparser.RuleParser(grammar)
+         expected = Tree.parse("(S He/VB estudiado/VB en/ADV la/DT (UNIVERSIDAD (UNIVERSIDAD Universidad/NN) (UNIVERSIDAD Complutense/NN)) y/CONJ he/VB trabajado/VB en/ADV Yahoo!/NN durante/ADV 2/NN años/NN)", parse_leaf=rp.from_string_token_to_tuple)
+         result = rp.tag(self.text)
+         self.assertEqual(result,expected)
+
 if __name__ == '__main__':
     unittest.main()
